@@ -5,14 +5,13 @@ let physics = 5;
 let mean = ((algebra + geography + physics) / 3);
 
 console.log(mean);
-
-
+//****************************************************************
 
 let name = 'Ilya';
 let message = (`Привет, мир! Меня зовут ${name}!`);
 
 console.log(message);
-
+//****************************************************************
 
 let x = 2;
 let y = 22;
