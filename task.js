@@ -46,24 +46,24 @@ function calculateAverageRating(){
     window.averageMark.textContent = averageMark;
 }
 
-function getAverageMark(...marks) {
-
+function getAverageMark(marks) {
   let sum = 0;
+  let arr = [1,2,3,4] // массив оценок
+  marks = arr;
 
   if (marks.length > 5) {
     console.log("Слишком много оценок!")
     marks.splice(5);
+    return;
   }
 
   for (let j = 0; j < marks.length; j++) {
     sum += marks[j];
   }
 
-  if (marks.length <= 5) {
     let result = sum / marks.length;
     console.log(result);
-  }
 
 };
 
-getAverageMark(1,2,3,4,5);
+getAverageMark();
