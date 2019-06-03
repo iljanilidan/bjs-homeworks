@@ -12,7 +12,7 @@ function getResult() {
   let disc = b**2 - 4*a*c;
 
   if (disc < 0) {
-    console.log('Корней нет');
+    return 'Корней нет';
   } 
     else if (disc === 0) {
     let x = (-b / 2*a);
@@ -35,7 +35,7 @@ function calculateDrinkTask(){
 }
 
 function askDrink(name,dateOfBirthday){
-    // код для задачи №3 писать здесь
+    // код для задачи №2 писать здесь
     //console.log(result)
     //return result;
 }
@@ -46,15 +46,14 @@ function calculateAverageRating(){
     window.averageMark.textContent = averageMark;
 }
 
+
 function getAverageMark(marks) {
   let sum = 0;
-  let arr = [1,2,3,4] // массив оценок
-  marks = arr;
 
   if (marks.length > 5) {
     console.log("Слишком много оценок!")
     marks.splice(5);
-    return;
+    // return; Не возвращая значение он выводит и сообщение и считает среднее значение от пяти элементов
   }
 
   for (let j = 0; j < marks.length; j++) {
@@ -66,4 +65,4 @@ function getAverageMark(marks) {
 
 };
 
-getAverageMark();
+getAverageMark([1,2,3,4,5]);
