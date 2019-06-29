@@ -41,7 +41,7 @@ showSolutionsMessage(2,4,2);
 ************************************************************************************************************************************
     
     
-    let data = {
+let data = {
 algebra: [2,3,4,5,6],
 geometry: [6,7,8,9,10],
 russian: [5,4,3,2,1],
@@ -63,6 +63,20 @@ function averageValue(arr) {
   return average;
 };
 
+function summ(data) {
+  let summa = averageValue(data.algebra) + averageValue(data.geometry) +  averageValue(data.russian) +averageValue(data.physics) + averageValue  (data.music) +averageValue(data.english) + averageValue(data.poety)   +averageValue(data.chimestry) + averageValue(data.french)
+
+  function sizeObj(data) {
+    let size = 0, key;
+    for (key in data) {
+        if (data.hasOwnProperty(key)) size++;
+    }
+    return size;
+  }
+  size = sizeObj(data);
+  return summa/size;
+  }
+
 function getAverageScore(data) {
 
   data = {algebra: averageValue(data.algebra),
@@ -76,21 +90,7 @@ function getAverageScore(data) {
   french: averageValue(data.french),
   average: summ(data)
   };
-
-  function summ(data) {
-    let zum = averageValue(data.algebra) + averageValue(data.geometry) +  averageValue(data.russian) +averageValue(data.physics) + averageValue  (data.music) +averageValue(data.english) + averageValue(data.poety)   +averageValue(data.chimestry) + averageValue(data.french)
-
-    function sizeObj(data) {
-      let size = 0, key;
-      for (key in data) {
-          if (data.hasOwnProperty(key)) size++;
-      }
-    }
-    size = sizeObj(data);
-    return zum/size
-  }
 return data;
-
 }
 
 console.log(getAverageScore(data));
