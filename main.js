@@ -1,22 +1,45 @@
-let animal = new Object({frog: 'kwa-kwa', lion: 'arrrgh'});
+function getSolutions(a,b,c) {
 
-function soundText(animal) {
-    
-  if (animal === undefined) {
-    return null;
-  } else {
-    let sound = Object.values(animal);
-    return sound;
+  let D = (Math.pow(b, 2)) - 4*a*c
+
+  if (D < 0) {
+    return { D: D }
+  } else if (D === 0) {
+    let x1 = -b / (2*a);
+    return { roots: x1, D: D };
+  } else if (D > 0) {
+    let x1 = (-b + Math.sqrt(D)) / 2*a;
+    let x2 = (-b - Math.sqrt(D)) / 2*a;
+    return { roots: [ x1, x2 ], D: D }
+  }
+
+  console.log(D);
+};
+
+
+function showSolutionsMessage(a,b,c) {
+  let result = getSolutions(a,b,c);
+  let x;
+  console.log("Вычисляем корни квадратного уравнения " + a + "x²+" + b + "x+" + c);
+  console.log(" ");
+  D = result.D;
+  console.log("Значение дискреминанта: " + D);
+  
+  if (D < 0) {
+    console.log("Уравнение не имеет вещественных корней")
+  } else if (D === 0) {
+    console.log("Уравнение имеет один корень X₁ = "+ result.roots)
+  } else if (D > 0) {
+    console.log("Уравнение имеет два корня. X₁ = " + result.roots[0] + "; X₂ = " + result.roots[1])
   }
 }
 
-soundText(animal);
+showSolutionsMessage(1,2,3);
 
-
-*****************************************************************************************************
+//**********************************************************************************************************************
     
     
-let marks = {
+let data = {
 algebra: [2,3,4,5,6],
 geometry: [6,7,8,9,10],
 russian: [5,4,3,2,1],
@@ -28,7 +51,7 @@ chimestry: [3,3,3,3,3],
 french: [4,4,5,4,4],
 };
 
-function finalGrades(marks) {
+function getAverageScore(data) {
   function averageValue(arr) {
     let sum = 0;
     for(let i = 0; i < arr.length; i++) {
@@ -38,14 +61,12 @@ function finalGrades(marks) {
     return average;
   }
 
-  for (let key in marks) {
-    marks[key] = averageValue(marks[key]);
+  for (let key in data) {
+    data[key] = averageValue(data[key]);
   }
-  marks.average = averageValue(Object.values(marks));
-  marks.roundedAverage = Math.round(marks.average);
-  let roundedAverage = marks.roundedAverage;
-  return roundedAverage;
+  data.average = averageValue(Object.values(data));
+  console.log(data);
 }
 
 
-finalGrades(marks);
+getAverageScore(data);
