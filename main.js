@@ -1,72 +1,93 @@
-function getSolutions(a,b,c) {
 
-  let D = (Math.pow(b, 2)) - 4*a*c
-
-  if (D < 0) {
-    return { D: D }
-  } else if (D === 0) {
-    let x1 = -b / (2*a);
-    return { roots: x1, D: D };
-  } else if (D > 0) {
-    let x1 = (-b + Math.sqrt(D)) / 2*a;
-    let x2 = (-b - Math.sqrt(D)) / 2*a;
-    return { roots: [ x1, x2 ], D: D }
+class Weapon {
+  constructor (name, attack, durability, range) {
+    this.name = name;
+    this.attack = attack;
+    this.durability = durability;
+    this.range = range;
   }
-
-  console.log(D);
-};
-
-
-function showSolutionsMessage(a,b,c) {
-  let result = getSolutions(a,b,c);
-  let x;
-  console.log("Вычисляем корни квадратного уравнения " + a + "x²+" + b + "x+" + c);
-  console.log(" ");
-  D = result.D;
-  console.log("Значение дискреминанта: " + D);
-  
-  if (D < 0) {
-    console.log("Уравнение не имеет вещественных корней")
-  } else if (D === 0) {
-    console.log("Уравнение имеет один корень X₁ = "+ result.roots)
-  } else if (D > 0) {
-    console.log("Уравнение имеет два корня. X₁ = " + result.roots[0] + "; X₂ = " + result.roots[1])
-  }
-}
-
-showSolutionsMessage(1,2,3);
-
-//**********************************************************************************************************************
-    
-    
-let data = {
-algebra: [2,3,4,5,6],
-geometry: [6,7,8,9,10],
-russian: [5,4,3,2,1],
-physics: [2,2,3,4,5],
-music: [5,5,5,5,5],
-english: [1,1,1,1,1],
-poety: [2,2,2,2,2],
-chimestry: [3,3,3,3,3],
-french: [4,4,5,4,4],
-};
-
-function getAverageScore(data) {
-  function averageValue(arr) {
-    let sum = 0;
-    for(let i = 0; i < arr.length; i++) {
-      sum += arr[i];
+  takeDamage(damage) {
+    this.durability = (this.durability - damage)
+    if (this.durability <= 0) {
+      return 'Оружие сломано';
+    } else {
+      return this.durability;
     }
-    let average = sum/arr.length;
-    return average;
   }
-
-  for (let key in data) {
-    data[key] = averageValue(data[key]);
+  getDamage(durability) {
+    if (this.durability >= (this.durability * 0.3)) {
+      return this.attack;
+    } else {
+      return (this.attack / 2);
+    }
   }
-  data.average = averageValue(Object.values(data));
-  console.log(data);
+  isBroken(durability) {
+    if (this.durability > 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }
 
+const hammer = new Weapon('Правосудие', 200, 100, 10);
+const hand = new Weapon('Рука', 1, Infinity, 1);
+const bow = new Weapon('Лук', 10, 200, 3);
+const sword = new Weapon('Меч', 25, 500, 1);
+const knife = new Weapon('Нож', 5, 300, 1);
+const staff = new Weapon('Посох', 8, 300, 2);
 
-getAverageScore(data);
+const longBow = new Weapon('Длинный лук', 15, bow.durability, 4);
+const axe = new Weapon('Секира', 27, 800, sword.range);
+const stormStaff = new Weapon('Посох бури', 10, staff.durability, 3);
+
+// *******************************************************
+
+class Bow extends Weapon {
+  constructor () {
+    super();
+    this.name = 'Лук';
+    this.attack = 10;
+    this.durability = 200;
+    this.range = 3;
+  }
+}
+class Hand extends Weapon {
+  constructor () {
+    super();
+    this.name = 'Рука';
+    this.attack = 1;
+    this.durability = Infinity;
+    this.range = 1;
+  }
+}
+class Sword extends Weapon {
+  constructor () {
+    super();
+    this.name = 'Меч';
+    this.attack = 25;
+    this.durability = 500;
+    this.range = 1;
+  }
+}
+class Knife extends Weapon {
+  constructor () {
+    super();
+    this.name = 'Нож';
+    this.attack = 5;
+    this.durability = 300;
+    this.range = 1;
+  }
+}
+class Staff extends Weapon {
+  constructor () {
+    super();
+    this.name = 'Посох';
+    this.attack = 8;
+    this.durability = 300;
+    this.range = 2;
+  }
+}
+
+// const test = new Staff();
+// console.log(test.takeDamage(100));
